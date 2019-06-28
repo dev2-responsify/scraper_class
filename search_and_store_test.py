@@ -16,4 +16,5 @@ def repeat(n):
         driver.get("http://google.com")
         driver.refresh()
 
+
 repeat(1)
