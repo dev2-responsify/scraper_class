@@ -1,6 +1,6 @@
-# from selenium import webdriver
-# from selenium.webdriver.common.keys import Keys
-# import time
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
 
 
 
@@ -22,7 +22,7 @@ def repeat(n):
         driver.set_page_load_timeout(10)
         driver.get("https://www.linkedin.com/")
         #driver.refresh()
-        element_search = driver.find_element_by_name("q")
+        element_search = driver.find_element_by_name("keywords")
         element_search.send_keys("Warcraft")
         element_search.send_keys(Keys.RETURN)
   
