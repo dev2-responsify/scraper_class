@@ -14,18 +14,37 @@ import time
 
 # print(store)
 
-
+    
 
 def repeat(n):
     for i in range(n):
         driver = webdriver.Chrome("/Users/responsify/Desktop/dev1/seleniumProj2/drivers/chromedriver")
-        driver.set_page_load_timeout(10)
+        driver.set_page_load_timeout(20)
         driver.get("https://www.linkedin.com/")
-        #driver.refresh()
-        element_search = driver.find_element_by_name("keywords")
-        element_search.send_keys("Warcraft")
-        element_search.send_keys(Keys.RETURN)
-  
+        # go to the login page
+        logInTarget=driver.find_element_by_class_name('nav__button-tertiary')
+        logInTarget.click()
+        # go to the login
+        clickJoin = driver.find_element_by_class_name("sign-in-link")
+        clickJoin.click()
+        #submit email 
+        userEmail = driver.find_element_by_id('username')
+        userEmail.send_keys('dev2@responsify.com')
+        #submit password
+        userPass= driver.find_element_by_id('password')
+        userPass.send_keys('1991115ab')
+        #hit sumit
+        loginBu= driver.find_element_by_class_name('login__form_action_container')
+        loginBu.click()
+        
+        # seach 
+        search= driver.find_element_by_xpath('//*[@id="ember33"]/input')
+        search.send_keys(" juean marichar")
+        search.send_keys(Keys.RETURN)
+    
+        time.sleep(150)
+
+       
 
 
 repeat(1)
