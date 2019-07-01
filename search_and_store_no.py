@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-
+from bs4 import BeautifulSoup as bs 
 
 
 
@@ -39,8 +39,11 @@ def repeat(n):
         
         # seach 
         search= driver.find_element_by_xpath('//*[@id="ember33"]/input')
-        search.send_keys(" juean marichar")
-        search.send_keys(Keys.RETURN)
+        
+        #search.send_keys(" juean marichar")
+        #search.send_keys(Keys.RETURN)
+
+
     
         time.sleep(150)
 
