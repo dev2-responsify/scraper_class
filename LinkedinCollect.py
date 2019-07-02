@@ -31,7 +31,7 @@ class LinkedinCollect():
         search= self.driver.find_element_by_xpath('//*[@id="ember33"]/input')
         searchBYCompany="https://www.linkedin.com/search/results/companies/?keywords={}&origin=CLUSTER_EXPANSION"
         seachURL=searchBYCompany.format(name)
-        self.driver=self.driver.get(searchURL)
+        self.driver=self.driver.get(seachURL)
 
     
         
