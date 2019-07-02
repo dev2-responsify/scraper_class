@@ -23,14 +23,15 @@ class LinkedinCollect():
         #submit password
         userPass= self.driver.find_element_by_id('password')
         userPass.send_keys('1991115ab')
-        #hit sumit
+        #hit submit
         loginBu= self.driver.find_element_by_class_name('login__form_action_container')
         loginBu.click()
+
     def search(self,name):
         search= self.driver.find_element_by_xpath('//*[@id="ember33"]/input')
         searchBYCompany="https://www.linkedin.com/search/results/companies/?keywords={}&origin=CLUSTER_EXPANSION"
         seachURL=searchBYCompany.format(name)
-        self.driver=self.driver.get(seachURL)
+        self.driver=self.driver.get(searchURL)
 
     
         
