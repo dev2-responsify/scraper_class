@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup as bu
+import time
+
 
 
 class LinkedinCollect():
@@ -28,21 +30,31 @@ class LinkedinCollect():
         loginBu.click()
 
     def search(self,name):
-        search= self.driver.find_element_by_xpath('//*[@id="ember33"]/input')
+        
         searchBYCompany="https://www.linkedin.com/search/results/companies/?keywords={}&origin=CLUSTER_EXPANSION"
-        seachURL=searchBYCompany.format(name)
-        self.driver=self.driver.get(searchURL)
+        searchURL=searchBYCompany.format(name)
+        self.driver.get(searchURL)
+        
+        value= self.driver.find_element_by_xpath("//*[contains(@class,'search-result__title t-16 t-black t-bold')]")
+        #=self.driver.find_element_by_class_name('search-result__title t-16 t-black t-bold')
+
+        value.click()
+        time.sleep(3)
+        clickPeople=self.driver. find_element_by_xpath('//*[@id="ember337"]')
+        
+        clickPeople.click()
+        
         
 
     
         
     
-
-
 
 
 collect=LinkedinCollect()
+
 collect.login()
-collect.search('Responsify')
+collect.search('green')
+
 
 
