@@ -1,12 +1,17 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup as bu
+from urllib.request import urlopen
+import time
+
+
 
 
 class LinkedinCollect():
     
     def __init__(self):
         self.seachURL=''
+        # do not overwrite
         self.driver=webdriver.Chrome("/Users/responsify/Desktop/dev1/seleniumProj2/drivers/chromedriver")
         self.driver.get("https://www.linkedin.com/")
 
@@ -28,21 +33,53 @@ class LinkedinCollect():
         loginBu.click()
 
     def search(self,name):
-        search= self.driver.find_element_by_xpath('//*[@id="ember33"]/input')
+        #seach advance search to the company 
         searchBYCompany="https://www.linkedin.com/search/results/companies/?keywords={}&origin=CLUSTER_EXPANSION"
-        seachURL=searchBYCompany.format(name)
-        self.driver=self.driver.get(searchURL)
+        #chnage the url in Linked in
+        searchURL=searchBYCompany.format(name)
+        # make it too sleep 
+        time.sleep(3)
+        self.driver.get(searchURL) 
+        #click on the first  result
+        #xpath to lick on the  first company
+        firstXpath="//*[contains(@class,'search-result__title t-16 t-black t-bold')]"
+        value= self.driver.find_element_by_xpath(firstXpath)
+        value.click()
+         
+        time.sleep(10)
+        #click  on people  after  your get into company linkin
+        xpathPeople="(//*[contains(@class,'t-14 t-bold t-black--light org-page-navigation__item-anchor ember-view')])[3]"
+        clickPeople=self.driver. find_element_by_xpath(xpathPeople)
+        clickPeople.click()
+
+
+    def scrap(self):
+
+        correctUrl  = self.driver.current_url
+        html=self.driver.page_source
+        soup=bu(html)
+        
+
+
+        
+
+        
+        
+
+
+        
         
 
     
         
     
-
-
 
 
 collect=LinkedinCollect()
+
 collect.login()
-collect.search('Responsify')
+collect.search('responsify')
+collect.scrap()
+
 
 
