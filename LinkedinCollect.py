@@ -60,6 +60,9 @@ class LinkedinCollect():
         soup=bu(html)
         
 
+
+        
+
         
         
 
