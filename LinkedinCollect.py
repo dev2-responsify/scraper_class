@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup as bu
 from urllib.request import urlopen
 import time
+import re
 
 
 
@@ -10,10 +11,11 @@ import time
 class LinkedinCollect():
     
     def __init__(self):
-        self.seachURL=''
+        
         # do not overwrite
-        self.driver=webdriver.Chrome("/Users/responsify/Desktop/dev1/seleniumProj2/drivers/chromedriver")
-        self.driver.get("https://www.linkedin.com/")
+        self.company_emp=[]
+        #self.driver=webdriver.Chrome("/Users/responsify/linkedin_scraper/searchProject/drivers/chromedriver")
+        #self.driver.get("https://www.linkedin.com/")
 
     def login(self):
         # go to the login page
@@ -55,10 +57,36 @@ class LinkedinCollect():
 
     def scrap(self):
 
-        correctUrl  = self.driver.current_url
-        html=self.driver.page_source
-        soup=bu(html)
+        #delete
+         html=open("responsify.html", 'r')
+
+         #correctUrl  = self.driver.current_url
+         #html=self.driver.page_source
+
+         # parse the page
+         Soup=bu(html,"lxml")
+         
+         #get the infomaction from the people
+         People_info= Soup.findAll('artdeco-entity-lockup-content')
+         #value=People_info
+         # store the system.
+         info=self. company_emp
+         size= len(People_info)
+
+         #store the infomaction the system 
+         for i in range(size):
+             value=People_info[i].getText().split("\n ")
+             info.append( list(filter (None,value)))
+         
+
+             
+         print(self.company_emp)
+            
         
+         
+         
+        
+
 
 
         
@@ -77,8 +105,8 @@ class LinkedinCollect():
 
 collect=LinkedinCollect()
 
-collect.login()
-collect.search('responsify')
+#collect.login()
+#collect.search('responsify')
 collect.scrap()
 
 
