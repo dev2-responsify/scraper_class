@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup as bu
 from urllib.request import urlopen
 import time
 import re
-
+import json
+import pickle
 
 
 
@@ -14,8 +15,8 @@ class LinkedinCollect():
         
         # do not overwrite
         self.company_emp=[]
-        #self.driver=webdriver.Chrome("/Users/responsify/linkedin_scraper/searchProject/drivers/chromedriver")
-        #self.driver.get("https://www.linkedin.com/")
+        self.driver=webdriver.Chrome("/Users/responsify/scraper_class/searchProject/drivers/chromedriver")
+        self.driver.get("https://www.linkedin.com/")
 
     def login(self):
         # go to the login page
@@ -80,9 +81,21 @@ class LinkedinCollect():
          
 
              
-         print(self.company_emp)
-            
         
+            
+    def  get_new_cookie(self):
+         
+        location="/Users/responsify/scraper_class/searchProject/cookies.txt"
+        cookies=self.driver.get_cookies()
+        print(cookies)
+        pickle.dump(cookies, open(location, "wb"))
+        #with open('cookies.txt', 'w') as outfile:
+            #json.dump(cookies, outfile)
+         
+
+         
+
+
          
          
         
@@ -105,9 +118,10 @@ class LinkedinCollect():
 
 collect=LinkedinCollect()
 
-#collect.login()
+collect.login()
+collect.get_new_cookie()
 #collect.search('responsify')
-collect.scrap()
+#collect.scrap()
 
 
 
