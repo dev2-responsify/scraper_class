@@ -87,11 +87,25 @@ class LinkedinCollect():
          # store the system.
          info=self. company_emp
          size= len(People_info)
+        
+
+         lastHeight = self.driver.execute_script("return document.body.scrollHeight")
+         while True:
+           self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+           time.sleep(6)
+           newHeight = self.driver.execute_script("return document.body.scrollHeight")
+           if newHeight == lastHeight:
+             break
+           lastHeight = newHeight
+
+
+        
+
 
          #store the infomaction the system 
-         for i in range(size):
-             value=People_info[i].getText().split("\n ")
-             info.append( list(filter (None,value)))
+         #for i in range(size):
+            # value=People_info[i].getText().split("\n ")
+            # info.append( list(filter (None,value)))
          
     def  get_new_cookie(self):
 
@@ -134,15 +148,10 @@ class LinkedinCollect():
 
 
 collect=LinkedinCollect()
-
-
-
 collect.load_cookie()
-collect.search('responsify')
+collect.search('Numerator')
 #collect.login()
 #collect.get_new_cookie()
-
-
 #collect.scrap()
 
 
