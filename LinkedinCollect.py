@@ -89,8 +89,7 @@ class LinkedinCollect():
             if preUrl==currectUrl:
                  break
 
-            Soup=bu(html,"lxml")  
-            
+            Soup=bu(html,"lxml") 
             people=Soup.findAll("div", {"class": "search-results-container"})
             self.data.append(people)
             '''#it is necessary to make sure that the page goes to the  
@@ -115,15 +114,15 @@ class LinkedinCollect():
 
         data = self.data
 
-        for s in range(len(data)):
+        for people in range(len(data)):
 
-            names=data[s][0].findAll("span", {"class": "name actor-name"})
-            print(names)
+            names=data[people][0].findAll("span", {"class": "name actor-name"})
+            
 
-            tittleObj=data[s][0].findAll("p", {"class": "subline-level-1 t-14 t-black t-normal search-result__truncate"})
-            print(tittleObj)
-            linkedurl=data[s][0].findAll("a", {"data-control-name":"search_srp_result"})
-            print(linkedurl)
+            tittleObj=data[people][0].findAll("p", {"class": "subline-level-1 t-14 t-black t-normal search-result__truncate"})
+            
+            linkedurl=data[people][0].findAll("a", {"data-control-name":"search_srp_result"})
+             
             
             for i in range(len(names)):
                 member={'name':None,'title':None,"url":None}
@@ -179,7 +178,7 @@ class LinkedinCollect():
         
     
 
-
+start = time.time()
 collect=LinkedinCollect()
 collect.load_cookie()
 collect.search('responsify')
@@ -187,3 +186,5 @@ collect.search('responsify')
 #collect.get_new_cookie()
 collect.scrap()
 collect.store_agent()
+end = time.time()
+print(end - start)
